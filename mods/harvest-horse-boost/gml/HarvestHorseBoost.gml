@@ -5,6 +5,7 @@
 #macro HARVEST_HORSE_BOOST_SETTLE_FRAMES 12
 #macro HARVEST_HORSE_BOOST_SCAN_INTERVAL 3
 #macro HARVEST_HORSE_BOOST_TILE_PIXELS 32
+#macro HARVEST_HORSE_BOOST_ENTRY_LOOKAHEAD_PIXELS 16
 
 function __harvest_horse_boost_runtime() {
     if (global[$ "__harvest_horse_boost"] == undefined) {
@@ -149,19 +150,47 @@ function harvest_horse_boost_scan_dig_sites(_radius_tiles) {
 function harvest_horse_boost_try_auto_dismount() {
     if (!obj_ari.is_mounted()) return;
 
-    // Room transitions are regular instances, but the game's internal
-    // overlap_instance() helper is not exposed to mod GML. The engine's
-    // context-free point lookup gives us the same doorway check without
-    // depending on a player-only method.
-    var _transition = instance_position(obj_ari.x, obj_ari.y, obj_roomtransition);
-    if (_transition != undefined
-        && _transition.ari_can_use
-        && LOCATIONS[_transition.destination_id] != undefined
-        && !LOCATIONS[_transition.destination_id].outdoor)
-    {
+    var _input_x = INPUT.check_value(InputId.Right) - INPUT.check_value(InputId.Left);
+    var _input_y = INPUT.check_value(InputId.Down) - INPUT.check_value(InputId.Up);
+    if (_input_x == 0 && _input_y == 0) return;
+
+    // The game blocks a mounted player when either leading corner of their
+    // bounding box reaches an indoor room transition. Recreate that test one
+    // half-tile ahead, rather than waiting for the player's centre to overlap
+    // the transition. This handles doorways, caves, stairs, and other
+    // transition visuals alike.
+    var _left = obj_ari.bbox_left;
+    var _right = obj_ari.bbox_right;
+    var _top = obj_ari.bbox_top;
+    var _bottom = obj_ari.bbox_bottom;
+    var _lookahead_x = _input_x * HARVEST_HORSE_BOOST_ENTRY_LOOKAHEAD_PIXELS;
+    var _lookahead_y = _input_y * HARVEST_HORSE_BOOST_ENTRY_LOOKAHEAD_PIXELS;
+    var _should_dismount = false;
+
+    with (obj_roomtransition) {
+        if (ari_can_use
+            && LOCATIONS[destination_id] != undefined
+            && !LOCATIONS[destination_id].outdoor)
+        {
+            var _hit = false;
+            if (_input_x != 0) {
+                var _leading_x = _input_x > 0 ? _right : _left;
+                _hit = point_in_rectangle(_leading_x + _lookahead_x, _top, bbox_left, bbox_top, bbox_right, bbox_bottom)
+                    || point_in_rectangle(_leading_x + _lookahead_x, _bottom, bbox_left, bbox_top, bbox_right, bbox_bottom);
+            }
+            if (!_hit && _input_y != 0) {
+                var _leading_y = _input_y > 0 ? _bottom : _top;
+                _hit = point_in_rectangle(_left, _leading_y + _lookahead_y, bbox_left, bbox_top, bbox_right, bbox_bottom)
+                    || point_in_rectangle(_right, _leading_y + _lookahead_y, bbox_left, bbox_top, bbox_right, bbox_bottom);
+            }
+            if (_hit) _should_dismount = true;
+        }
+    }
+
+    if (_should_dismount) {
         // The mount state consumes this normal UI request and returns the
-        // player to PlayerState.Default. The door transition then runs on
-        // the following frame through the game's usual path.
+        // player to PlayerState.Default. The room transition then runs on the
+        // following frame through the game's usual path.
         obj_ari.ui_mount_request = true;
     }
 }
@@ -219,5 +248,5 @@ function harvest_horse_boost_register() {
     mmapi_register(harvest_horse_boost_tick);
 }
 
-mmapi_mod_declare("harvest_horse_boost", "1.1.3");
+mmapi_mod_declare("harvest_horse_boost", "1.1.4");
 harvest_horse_boost_register();
