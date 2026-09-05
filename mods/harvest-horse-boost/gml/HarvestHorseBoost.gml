@@ -1,7 +1,7 @@
 // Harvest Horse Boost
 // Boosts the Mist Horse's Harvest Horse skill, with an on-foot fallback.
 
-#macro HARVEST_HORSE_BOOST_CONFIG_VERSION 1
+#macro HARVEST_HORSE_BOOST_CONFIG_VERSION 2
 #macro HARVEST_HORSE_BOOST_SETTLE_FRAMES 12
 #macro HARVEST_HORSE_BOOST_SCAN_INTERVAL 3
 #macro HARVEST_HORSE_BOOST_TILE_PIXELS 32
@@ -28,13 +28,17 @@ function harvest_horse_boost_config() {
     var _rt = __harvest_horse_boost_runtime();
     if (_rt.cfg != undefined) return _rt.cfg;
 
-    var _source = mmapi_config_read_valid("harvest_horse_boost", HARVEST_HORSE_BOOST_CONFIG_VERSION);
+    // Version 2 renames the mounted excavation setting. Read the previous
+    // struct directly so an existing player's range and toggle choices carry
+    // forward, then write the normalized v2 configuration below.
+    var _source = mmapi_config_load("harvest_horse_boost");
+    var _legacy_auto_shovel = mmapi_config_bool(_source, "mounted_auto_shovel", true);
     _rt.cfg = {
         foot_radius_tiles: mmapi_config_number(_source, "foot_radius_tiles", 1, 0, 4),
         mounted_radius_tiles: mmapi_config_number(_source, "mounted_radius_tiles", 2, 0, 4),
         harvest_fruit_bushes: mmapi_config_bool(_source, "harvest_fruit_bushes", true),
         harvest_fruit_trees: mmapi_config_bool(_source, "harvest_fruit_trees", true),
-        mounted_auto_shovel: mmapi_config_bool(_source, "mounted_auto_shovel", true),
+        mounted_auto_excavation: mmapi_config_bool(_source, "mounted_auto_excavation", _legacy_auto_shovel),
         auto_dismount_indoors: mmapi_config_bool(_source, "auto_dismount_indoors", true),
         debug_notifications: mmapi_config_bool(_source, "debug_notifications", true),
     };
@@ -111,10 +115,8 @@ function harvest_horse_boost_held_shovel() {
 }
 
 function harvest_horse_boost_scan_dig_sites(_radius_tiles) {
-    var _shovel = harvest_horse_boost_held_shovel();
-    if (_shovel == undefined) return;
-
     var _rt = __harvest_horse_boost_runtime();
+    var _shovel = harvest_horse_boost_held_shovel();
     _rt.dug_this_scan = false;
 
     var _radius_pixels = (_radius_tiles * HARVEST_HORSE_BOOST_TILE_PIXELS) + (HARVEST_HORSE_BOOST_TILE_PIXELS / 2);
@@ -138,8 +140,14 @@ function harvest_horse_boost_scan_dig_sites(_radius_tiles) {
                     obj_ari.depth,
                     spr_fx_poof1_dirt_once
                 );
-                ARI.gain_essence(_shovel.prototype.quality + 1, 8 * (_cell_x + 1), 8 * (_cell_y + 1));
-                ARI.modify_stamina(_shovel.prototype.stamina_cost);
+                // Mounted excavation itself has no held-tool requirement. If
+                // a shovel is currently equipped, preserve its normal
+                // quality-based essence and stamina cost. Archaeology XP and
+                // seasonal-event drops remain in the game's dig-site path.
+                if (_shovel != undefined) {
+                    ARI.gain_essence(_shovel.prototype.quality + 1, 8 * (_cell_x + 1), 8 * (_cell_y + 1));
+                    ARI.modify_stamina(_shovel.prototype.stamina_cost);
+                }
                 ARI.gain_xp(Skill.Archaeology, XpValue.break_dig_spot);
                 _rt.dug_this_scan = true;
             }
@@ -236,7 +244,7 @@ function harvest_horse_boost_tick() {
 
     var _radius = _mounted ? _cfg.mounted_radius_tiles : _cfg.foot_radius_tiles;
     harvest_horse_boost_scan(_radius);
-    if (_mounted && _cfg.mounted_auto_shovel) {
+    if (_mounted && _cfg.mounted_auto_excavation) {
         harvest_horse_boost_scan_dig_sites(_radius);
     }
 }
@@ -248,5 +256,5 @@ function harvest_horse_boost_register() {
     mmapi_register(harvest_horse_boost_tick);
 }
 
-mmapi_mod_declare("harvest_horse_boost", "1.1.4");
+mmapi_mod_declare("harvest_horse_boost", "1.1.5");
 harvest_horse_boost_register();

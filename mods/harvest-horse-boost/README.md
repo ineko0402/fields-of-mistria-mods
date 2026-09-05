@@ -8,7 +8,8 @@
 
 - ミストホース騎乗中: 範囲2マス（5×5マス）
 - 徒歩: 範囲1マス（3×3マス）。騎乗できない場所用の補助です。
-- 騎乗中にシャベルを持っている場合、範囲内の遺物ポイントを自動で掘り出します。
+- 騎乗中は、手に持っている道具にかかわらず、範囲内の遺物ポイントを自動で掘り出します。
+- シャベルを持っている時だけ、シャベル品質に応じたエッセンス獲得とスタミナ消費を本来どおり適用します。
 - 騎乗したまま屋内への入口に入ろうとすると、自動で降車します。
 - 常時ON。キー操作はありません。
 - 対象は畑に植えた作物、収穫可能な低木、果実のある果樹です。
@@ -37,18 +38,18 @@
 
 ```json
 {
-  "__config_version": 1,
+  "__config_version": 2,
   "foot_radius_tiles": 1,
   "mounted_radius_tiles": 2,
   "harvest_fruit_bushes": true,
   "harvest_fruit_trees": true,
-  "mounted_auto_shovel": true,
+  "mounted_auto_excavation": true,
   "auto_dismount_indoors": true,
   "debug_notifications": true
 }
 ```
 
-`foot_radius_tiles` と `mounted_radius_tiles` は 0〜4 を指定できます。`harvest_fruit_bushes` と `harvest_fruit_trees` で低木・果樹を個別に無効化できます。`mounted_auto_shovel` は騎乗中の遺物ポイント自動発掘、`auto_dismount_indoors` は屋内入口での自動降車を切り替えます。`debug_notifications` を `false` にすると、徒歩・騎乗の状態通知を非表示にできます。
+`foot_radius_tiles` と `mounted_radius_tiles` は 0〜4 を指定できます。`harvest_fruit_bushes` と `harvest_fruit_trees` で低木・果樹を個別に無効化できます。`mounted_auto_excavation` は騎乗中の遺物ポイント自動発掘、`auto_dismount_indoors` は屋内入口での自動降車を切り替えます。自動発掘は手持ちに関係なく動作し、シャベルを手に持つ場合のみエッセンス・スタミナ処理を適用します。`debug_notifications` を `false` にすると、徒歩・騎乗の状態通知を非表示にできます。
 
 ## 注意
 
