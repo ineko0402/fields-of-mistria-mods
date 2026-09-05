@@ -1,0 +1,15 @@
+# Local build and distribution artifacts
+/outputs/
+/work/
+*.zip
+
+# MOMI and game-generated files
+mod_data/
+logs/
+*.bak
+
+# Editor and operating-system files
+.vscode/
+.idea/
+Thumbs.db
+.DS_Store
