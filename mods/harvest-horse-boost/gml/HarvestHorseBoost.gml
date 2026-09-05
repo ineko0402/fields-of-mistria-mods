@@ -149,10 +149,11 @@ function harvest_horse_boost_scan_dig_sites(_radius_tiles) {
 function harvest_horse_boost_try_auto_dismount() {
     if (!obj_ari.is_mounted()) return;
 
-    // overlap_instance() belongs to the player instance. Calling it through
-    // obj_ari keeps its instance context intact under MOMI callbacks; `with`
-    // here would instead leave `self` without an instance.
-    var _transition = obj_ari.overlap_instance(obj_ari.x, obj_ari.y, obj_roomtransition);
+    // Room transitions are regular instances, but the game's internal
+    // overlap_instance() helper is not exposed to mod GML. The engine's
+    // context-free point lookup gives us the same doorway check without
+    // depending on a player-only method.
+    var _transition = instance_position(obj_ari.x, obj_ari.y, obj_roomtransition);
     if (_transition != undefined
         && _transition.ari_can_use
         && LOCATIONS[_transition.destination_id] != undefined
@@ -218,5 +219,5 @@ function harvest_horse_boost_register() {
     mmapi_register(harvest_horse_boost_tick);
 }
 
-mmapi_mod_declare("harvest_horse_boost", "1.1.2");
+mmapi_mod_declare("harvest_horse_boost", "1.1.3");
 harvest_horse_boost_register();
