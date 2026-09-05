@@ -7,7 +7,7 @@
 | MOD | 内容 | 現在の版 |
 | --- | --- | --- |
 | [Japanese Animal Names](mods/japanese-animal-names/README.md) | 動物のランダム名候補を日本語名に置き換えます。 | 1.3.0 |
-| [Proximity Crop Harvest](mods/proximity-crop-harvest/README.md) | プレイヤーの近くにある収穫可能な作物・果実を自動収穫します。 | 1.0.0 |
+| [Harvest Horse Boost](mods/harvest-horse-boost/README.md) | ミストホースの Harvest Horse を、広い収穫範囲で使いやすくします。 | 1.0.1 |
 | [Map Warp](mods/map-warp/README.md) | マップ画面から解放済みの屋外地域へワープします。 | 0.1.5 |
 
 ## 方針

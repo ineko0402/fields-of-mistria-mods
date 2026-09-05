@@ -1,14 +1,14 @@
-// Proximity Crop Harvest
-// Automatically interacts with mature field crops near a moving player.
+// Harvest Horse Boost
+// Boosts the Mist Horse's Harvest Horse skill, with an on-foot fallback.
 
-#macro PROXIMITY_CROP_HARVEST_CONFIG_VERSION 1
-#macro PROXIMITY_CROP_HARVEST_SETTLE_FRAMES 12
-#macro PROXIMITY_CROP_HARVEST_SCAN_INTERVAL 3
-#macro PROXIMITY_CROP_HARVEST_TILE_PIXELS 32
+#macro HARVEST_HORSE_BOOST_CONFIG_VERSION 1
+#macro HARVEST_HORSE_BOOST_SETTLE_FRAMES 12
+#macro HARVEST_HORSE_BOOST_SCAN_INTERVAL 3
+#macro HARVEST_HORSE_BOOST_TILE_PIXELS 32
 
-function __proximity_crop_harvest_runtime() {
-    if (global[$ "__proximity_crop_harvest"] == undefined) {
-        global.__proximity_crop_harvest = {
+function __harvest_horse_boost_runtime() {
+    if (global[$ "__harvest_horse_boost"] == undefined) {
+        global.__harvest_horse_boost = {
             registered: false,
             cfg: undefined,
             observed_mounted: undefined,
@@ -19,14 +19,14 @@ function __proximity_crop_harvest_runtime() {
             scan_frame: 0,
         };
     }
-    return global.__proximity_crop_harvest;
+    return global.__harvest_horse_boost;
 }
 
-function proximity_crop_harvest_config() {
-    var _rt = __proximity_crop_harvest_runtime();
+function harvest_horse_boost_config() {
+    var _rt = __harvest_horse_boost_runtime();
     if (_rt.cfg != undefined) return _rt.cfg;
 
-    var _source = mmapi_config_read_valid("proximity_crop_harvest", PROXIMITY_CROP_HARVEST_CONFIG_VERSION);
+    var _source = mmapi_config_read_valid("harvest_horse_boost", HARVEST_HORSE_BOOST_CONFIG_VERSION);
     _rt.cfg = {
         foot_radius_tiles: mmapi_config_number(_source, "foot_radius_tiles", 1, 0, 4),
         mounted_radius_tiles: mmapi_config_number(_source, "mounted_radius_tiles", 2, 0, 4),
@@ -34,20 +34,20 @@ function proximity_crop_harvest_config() {
         harvest_fruit_trees: mmapi_config_bool(_source, "harvest_fruit_trees", true),
         debug_notifications: mmapi_config_bool(_source, "debug_notifications", true),
     };
-    mmapi_config_write("proximity_crop_harvest", PROXIMITY_CROP_HARVEST_CONFIG_VERSION, _rt.cfg);
+    mmapi_config_write("harvest_horse_boost", HARVEST_HORSE_BOOST_CONFIG_VERSION, _rt.cfg);
     return _rt.cfg;
 }
 
-function proximity_crop_harvest_notify_mode(_mounted, _cfg) {
+function harvest_horse_boost_notify_mode(_mounted, _cfg) {
     if (!_cfg.debug_notifications) return;
     if (_mounted) {
-        create_notification("mods/proximity_crop_harvest/notifications/mounted");
+        create_notification("mods/harvest_horse_boost/notifications/mounted");
     } else {
-        create_notification("mods/proximity_crop_harvest/notifications/on_foot");
+        create_notification("mods/harvest_horse_boost/notifications/on_foot");
     }
 }
 
-function proximity_crop_harvest_is_target(_node, _cfg) {
+function harvest_horse_boost_is_target(_node, _cfg) {
     var _category = object_id_to_object_category(_node.object_id);
     if (_category == ObjectCategory.Crop) return true;
 
@@ -74,8 +74,8 @@ function proximity_crop_harvest_is_target(_node, _cfg) {
     return false;
 }
 
-function proximity_crop_harvest_scan(_radius_tiles) {
-    var _radius_pixels = (_radius_tiles * PROXIMITY_CROP_HARVEST_TILE_PIXELS) + (PROXIMITY_CROP_HARVEST_TILE_PIXELS / 2);
+function harvest_horse_boost_scan(_radius_tiles) {
+    var _radius_pixels = (_radius_tiles * HARVEST_HORSE_BOOST_TILE_PIXELS) + (HARVEST_HORSE_BOOST_TILE_PIXELS / 2);
     var _player_x = obj_ari.x;
     var _player_y = obj_ari.y;
 
@@ -87,7 +87,7 @@ function proximity_crop_harvest_scan(_radius_tiles) {
     with (obj_node_renderer) {
         var _node = self.node;
         if (_node != undefined
-            && proximity_crop_harvest_is_target(_node, __proximity_crop_harvest_runtime().cfg)
+            && harvest_horse_boost_is_target(_node, __harvest_horse_boost_runtime().cfg)
             && abs(self.x - _player_x) <= _radius_pixels
             && abs(self.y - _player_y) <= _radius_pixels
             && can_interact(_node))
@@ -97,11 +97,11 @@ function proximity_crop_harvest_scan(_radius_tiles) {
     }
 }
 
-function proximity_crop_harvest_tick() {
+function harvest_horse_boost_tick() {
     if (!instance_exists(obj_ari)) return;
 
-    var _rt = __proximity_crop_harvest_runtime();
-    var _cfg = proximity_crop_harvest_config();
+    var _rt = __harvest_horse_boost_runtime();
+    var _cfg = harvest_horse_boost_config();
     var _mounted = obj_ari.is_mounted();
 
     // A room transition can briefly report the player as unmounted. Wait for a
@@ -113,7 +113,7 @@ function proximity_crop_harvest_tick() {
         _rt.last_y = obj_ari.y;
         return;
     }
-    if (_rt.stable_frames < PROXIMITY_CROP_HARVEST_SETTLE_FRAMES) {
+    if (_rt.stable_frames < HARVEST_HORSE_BOOST_SETTLE_FRAMES) {
         _rt.stable_frames += 1;
         _rt.last_x = obj_ari.x;
         _rt.last_y = obj_ari.y;
@@ -121,7 +121,7 @@ function proximity_crop_harvest_tick() {
     }
     if (_rt.active_mounted != _mounted) {
         _rt.active_mounted = _mounted;
-        proximity_crop_harvest_notify_mode(_mounted, _cfg);
+        harvest_horse_boost_notify_mode(_mounted, _cfg);
     }
 
     var _moved = (_rt.last_x != obj_ari.x || _rt.last_y != obj_ari.y);
@@ -130,18 +130,18 @@ function proximity_crop_harvest_tick() {
     if (!_moved) return;
 
     _rt.scan_frame += 1;
-    if ((_rt.scan_frame mod PROXIMITY_CROP_HARVEST_SCAN_INTERVAL) != 0) return;
+    if ((_rt.scan_frame mod HARVEST_HORSE_BOOST_SCAN_INTERVAL) != 0) return;
 
     var _radius = _mounted ? _cfg.mounted_radius_tiles : _cfg.foot_radius_tiles;
-    proximity_crop_harvest_scan(_radius);
+    harvest_horse_boost_scan(_radius);
 }
 
-function proximity_crop_harvest_register() {
-    var _rt = __proximity_crop_harvest_runtime();
+function harvest_horse_boost_register() {
+    var _rt = __harvest_horse_boost_runtime();
     if (_rt.registered) return;
     _rt.registered = true;
-    mmapi_register(proximity_crop_harvest_tick);
+    mmapi_register(harvest_horse_boost_tick);
 }
 
-mmapi_mod_declare("proximity_crop_harvest", "1.0.0");
-proximity_crop_harvest_register();
+mmapi_mod_declare("harvest_horse_boost", "1.0.1");
+harvest_horse_boost_register();
