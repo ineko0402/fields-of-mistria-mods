@@ -4,6 +4,8 @@
 
 ## 1. 範囲と構成
 
+- [ ] 動作確認に使用した MOMI の公開バージョンを記録した：`v____`。
+- [ ] `manifest.toml` の `minInstallerVersion` が、動作確認した MOMI 版以下であることを確認した：`v____`。
 - [ ] ゲームフォルダ内のアセットを直接編集していない。
 - [ ] MODフォルダには、そのMODに必要な自作ファイルだけが入っている。
 - [ ] `manifest.toml` の `name`、`author`、`version`、`minInstallerVersion` を確認した。
