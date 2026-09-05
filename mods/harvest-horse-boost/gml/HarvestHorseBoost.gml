@@ -149,16 +149,20 @@ function harvest_horse_boost_scan_dig_sites(_radius_tiles) {
 function harvest_horse_boost_try_auto_dismount() {
     if (!obj_ari.is_mounted()) return;
 
-    var _transition = overlap_instance(obj_ari.x, obj_ari.y, obj_roomtransition);
-    if (_transition != undefined
-        && _transition.ari_can_use
-        && LOCATIONS[_transition.destination_id] != undefined
-        && !LOCATIONS[_transition.destination_id].outdoor)
-    {
-        // The mount state consumes this normal UI request and returns the
-        // player to PlayerState.Default. The door transition then runs on the
-        // following frame through the game's usual path.
-        obj_ari.ui_mount_request = true;
+    // overlap_instance() is an instance method, so run the check in the
+    // player's context rather than the MMAPI callback context.
+    with (obj_ari) {
+        var _transition = overlap_instance(self.x, self.y, obj_roomtransition);
+        if (_transition != undefined
+            && _transition.ari_can_use
+            && LOCATIONS[_transition.destination_id] != undefined
+            && !LOCATIONS[_transition.destination_id].outdoor)
+        {
+            // The mount state consumes this normal UI request and returns the
+            // player to PlayerState.Default. The door transition then runs on
+            // the following frame through the game's usual path.
+            self.ui_mount_request = true;
+        }
     }
 }
 
@@ -215,5 +219,5 @@ function harvest_horse_boost_register() {
     mmapi_register(harvest_horse_boost_tick);
 }
 
-mmapi_mod_declare("harvest_horse_boost", "1.1.0");
+mmapi_mod_declare("harvest_horse_boost", "1.1.1");
 harvest_horse_boost_register();
