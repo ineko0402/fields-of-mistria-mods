@@ -17,6 +17,11 @@ game assets or change ordinary monster health and damage.
 - **Mushroom shell break:** Attacks that target a shelled mushroom receive the
   game's `Shield Break` flag. The enemy otherwise uses its normal damage,
   defeat, drop, and experience handling.
+- **Auto Sonic Boom:** When the Sonic Boom perk is enabled, a nearby Essence
+  Bat sonic wave produces the perk's normal Sonic Boom automatically.
+- **Flame projectile neutralization:** Nearby player-targeted Flame Spirit
+  fireballs are safely removed. They cannot be naturally reflected back at an
+  enemy, unlike Rockclod stones.
 
 Rock Stacks, Mimics, and any other state-based invulnerability are intentionally
 outside version 0.1.0. Their state machines defer damage rather than simply
@@ -49,7 +54,9 @@ The settings file is created on first launch:
 | `auto_reflect_charges` | `true` | Reflect nearby Rockclod body charges. |
 | `auto_capture_bombs` | `true` | Capture nearby Rockclod bombs when an inventory slot is available. |
 | `mushroom_shell_break` | `true` | Let player-side attacks damage shelled mushrooms. |
-| `assist_radius_tiles` | `1.5` | Proximity radius for stone reflection and bomb capture; valid range: 1–3. |
+| `auto_sonic_boom` | `true` | Trigger Sonic Boom automatically for nearby bat sonic waves, only while the perk is enabled. |
+| `auto_neutralize_flame_projectiles` | `true` | Remove nearby player-targeted Flame Spirit fireballs. |
+| `assist_radius_tiles` | `1.5` | Proximity radius for automatic projectile and charge assists; valid range: 1–3. |
 | `debug_notifications` | `false` | Shows an English notification when the MOD first becomes active in a play session. |
 
 Invalid setting values are returned to their safe defaults when the game next

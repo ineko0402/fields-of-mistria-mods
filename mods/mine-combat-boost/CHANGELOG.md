@@ -1,5 +1,14 @@
 # Changelog
 
+## 0.1.3
+
+- Added automatic Sonic Boom activation for nearby Essence Bat sonic waves,
+  when the Sonic Boom perk is enabled.
+- Added safe automatic neutralization for nearby player-targeted Flame Spirit
+  fireballs. Flame Spirit fireballs do not have a native return-projectile
+  path, so this does not deal damage back to the enemy.
+- Added individual configuration options for both new assists.
+
 ## 0.1.2
 
 - Added automatic reflection for nearby Rockclod body charges.

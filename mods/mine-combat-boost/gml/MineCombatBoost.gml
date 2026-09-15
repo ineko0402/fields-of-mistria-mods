@@ -1,7 +1,7 @@
 // Mine Combat Boost
-// Small, opt-in assists for Rockclod projectiles and mushroom shells.
+// Small, opt-in assists for special mine-enemy mechanics.
 
-#macro MINE_COMBAT_BOOST_CONFIG_VERSION 1
+#macro MINE_COMBAT_BOOST_CONFIG_VERSION 2
 #macro MINE_COMBAT_BOOST_TILE_PIXELS 16
 
 function __mine_combat_boost_runtime() {
@@ -26,6 +26,8 @@ function mine_combat_boost_config() {
         auto_reflect_charges: mmapi_config_bool(_source, "auto_reflect_charges", true),
         auto_capture_bombs: mmapi_config_bool(_source, "auto_capture_bombs", true),
         mushroom_shell_break: mmapi_config_bool(_source, "mushroom_shell_break", true),
+        auto_sonic_boom: mmapi_config_bool(_source, "auto_sonic_boom", true),
+        auto_neutralize_flame_projectiles: mmapi_config_bool(_source, "auto_neutralize_flame_projectiles", true),
         assist_radius_tiles: mmapi_config_number(_source, "assist_radius_tiles", 1.5, 1, 3),
         debug_notifications: mmapi_config_bool(_source, "debug_notifications", false),
     };
@@ -104,6 +106,45 @@ function mine_combat_boost_capture_bombs(_radius_pixels) {
     }
 }
 
+function mine_combat_boost_trigger_sonic_boom(_radius_pixels) {
+    // Sonic Boom's normal trigger is an attack landing on the Essence Bat's
+    // sonic wave. Recreate only its native result, and only while the player
+    // has the actual perk enabled. This retains its original damage, area,
+    // enemy targeting, and grid-object behavior.
+    if (!ARI.perk_active(Perk.SonicBoom)) return;
+
+    with (obj_monster_bat_sonic_attack) {
+        if (mine_combat_boost_in_range(self.x, self.y, _radius_pixels)) {
+            CAMERA.add_trauma(0.4, 0.4);
+            instance_create_depth(
+                self.x,
+                self.y,
+                -1000,
+                obj_monster_bat_sonic_boom,
+                { damage: floor(self.damage / 2) }
+            );
+            if (self.tango_handle != undefined) {
+                TANGO.request_stop(self.tango_handle);
+            }
+            instance_destroy(self);
+        }
+    }
+}
+
+function mine_combat_boost_neutralize_flame_projectiles(_radius_pixels) {
+    // Flame Spirit projectiles can be struck, but their native on-hit path
+    // destroys them; unlike Rockclod stones, they have no return-projectile
+    // behavior. Destroying only player-targeted fireballs nearby is therefore
+    // the safe equivalent of an automatic successful deflection.
+    with (obj_monster_spirit_projectile) {
+        if (self.target_enemy == false
+            && mine_combat_boost_in_range(self.x, self.y, _radius_pixels))
+        {
+            instance_destroy(self);
+        }
+    }
+}
+
 function mine_combat_boost_damage_filter(_tarball, _receiver) {
     var _cfg = mine_combat_boost_config();
     if (!_cfg.enabled || !_cfg.mushroom_shell_break) return _tarball;
@@ -142,6 +183,12 @@ function mine_combat_boost_tick() {
     if (_cfg.auto_capture_bombs) {
         mine_combat_boost_capture_bombs(_radius_pixels);
     }
+    if (_cfg.auto_sonic_boom) {
+        mine_combat_boost_trigger_sonic_boom(_radius_pixels);
+    }
+    if (_cfg.auto_neutralize_flame_projectiles) {
+        mine_combat_boost_neutralize_flame_projectiles(_radius_pixels);
+    }
 }
 
 function mine_combat_boost_register() {
@@ -152,5 +199,5 @@ function mine_combat_boost_register() {
     mmapi_filter("combat.damage", mine_combat_boost_damage_filter);
 }
 
-mmapi_mod_declare("mine_combat_boost", "0.1.2");
+mmapi_mod_declare("mine_combat_boost", "0.1.3");
 mine_combat_boost_register();
