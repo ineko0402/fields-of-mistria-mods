@@ -1,5 +1,17 @@
 # Changelog
 
+## 1.4.0 — 2026-09-18
+
+- Added `enabled` to switch Japanese random names on or off without removing
+  the MOD. Disabled mode leaves the game's native English pools untouched.
+- Split built-in Japanese candidates into selectable Pet Style, Sweets,
+  Season & Weather, Nature, and Color-Inspired groups.
+- Added the optional `custom_names` group for user-added candidates.
+- Added safe migration for v1.3.0 settings. A user-edited legacy list is
+  retained as Custom names without adding unwanted built-in candidates.
+- Removed the old static Fiddle name-pool replacement so `enabled: false`
+  genuinely leaves the game's native English candidates unchanged.
+
 ## 1.3.0 — 2026-08-23
 
 - Added a user-editable JSON name list through MMAPI config storage.
