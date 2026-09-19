@@ -1,0 +1,108 @@
+# Japanese Animal Names: source-of-truth name catalogue.
+#
+# Edit a MOD pool's `names` list, then run:
+#   powershell -ExecutionPolicy Bypass -File tools\Build-JapaneseAnimalNamesCatalog.ps1
+#
+# `source = "vanilla"` pools are a read-only reference copied from the game's
+# ranching/misc.toml. They are deliberately never added by this MOD.
+
+catalog_version = 1
+
+[[pool]]
+id = 1
+source = "mod"
+sex = "shared"
+category = "pet_style"
+enabled_by_default = true
+names = [
+  "ココ", "モモ", "モコ", "ルル", "ララ", "ナナ", "ミミ", "ニコ", "ポポ", "ピピ",
+  "リン", "メイ", "マル", "ポン", "ハナ", "ソラ", "ユキ", "ツキ", "モフ", "チロ"
+]
+
+[[pool]]
+id = 2
+source = "mod"
+sex = "shared"
+category = "sweets"
+enabled_by_default = true
+names = [
+  "モチ", "アンコ", "ダンゴ", "オハギ", "キナコ", "アズキ", "ミルク", "ココア", "チョコ",
+  "プリン", "クッキー", "マカロン", "シフォン", "バニラ", "キャラメル", "ハチミツ", "ミツ", "マメ",
+  "カステラ", "ドラヤキ"
+]
+
+[[pool]]
+id = 3
+source = "mod"
+sex = "shared"
+category = "season_nature"
+enabled_by_default = true
+names = [
+  "ハル", "ナツ", "アキ", "フユ", "ツユ", "ミゾレ", "コヨミ", "アサヒ", "ユウヒ", "ワカバ",
+  "モミジ", "コハル", "コナツ", "ナギサ", "アラレ", "ヒナタ", "イズミ", "シズク", "ホクト",
+  "シグレ", "カスミ"
+]
+
+[[pool]]
+id = 5
+source = "mod"
+sex = "shared"
+category = "color_inspired"
+enabled_by_default = true
+names = [
+  "コガネ", "アサギ", "アカネ", "エンジ", "スオウ", "ルリ", "コンペキ", "フジ", "ナデシコ",
+  "ヒスイ", "トキ", "ウグイス", "カラシ", "アケ", "アオニ", "コハク", "アイ", "ベニ", "サンゴ",
+  "モエギ", "オリベ", "コン", "トキハ", "ハネズ", "ヤマブキ"
+]
+
+[[pool]]
+id = 4
+source = "mod"
+sex = "shared"
+category = "flower_plant"
+enabled_by_default = true
+names = [
+  "ツバキ", "スミレ", "ボタン", "キキョウ", "ヒマワリ", "タンポポ", "スズラン", "ユリ", "ハギ", "ヨモギ",
+  "クルミ", "カエデ", "ビワ", "ユズ", "マツ", "ウメ", "リンドウ", "ツツジ", "サクラ", "カリン",
+  "アヤメ", "アンズ", "キク", "シオン"
+]
+
+# Japanese-friendly names derived from the game's original English pools.
+# The source remains "mod" because these are new candidate names, not a
+# replacement of the native pools. `origin = "vanilla"` records their basis.
+[[pool]]
+id = 6
+source = "mod"
+origin = "vanilla"
+sex = "shared"
+category = "vanilla_inspired"
+enabled_by_default = true
+names = [
+  "ピクルス", "トースト", "マンゴー", "ココナッツ", "バゲット", "ピーナッツ", "バター", "ローフ",
+  "ケーキ", "パンケーキ", "ペッパー", "シナモン", "アップル", "レモン",
+  "エビ", "クマ", "クロ", "ゴンタ", "リーフ", "デイジー", "ポピー", "ジェイド", "オーロラ",
+  "サニー", "ストーミー", "ブリージー", "ターボ", "ソックス", "ハート",
+  "ジュノ", "ルナ", "オリバー", "フィン", "チャーリー", "ミカ", "ミーシャ", "シャーロット",
+  "パイパー", "カーメン", "エリン", "レスリー"
+]
+
+# Game-original reference pools. Do not change these or set source to "mod".
+[[pool]]
+id = 100
+source = "vanilla"
+sex = "male"
+category = "original"
+enabled_by_default = false
+names = [
+  "Oliver", "Rook", "Tango", "Tails", "Pickles", "Dr. Soma", "Pip", "Finn", "Toast", "Chaz", "Jupiter", "Tacky", "Otto", "Taz", "Hudson", "Frank", "Sammy", "Charlie", "Bobby", "Mango", "Coconut", "Taro", "Baguette", "Kuro", "Gonta", "Pan", "Puck", "Walter", "Monty", "Rav Tuna", "BJ", "Argus", "Monty", "Python", "Felix", "Calvin", "Hobbes", "Tobias", "Poggers", "Peanut Butter", "Gustavo", "Bo", "Boo", "Shrimp", "Loaf", "Cake", "Pancake", "Pudding", "Bean", "Koro", "Chappy", "Turbo", "Kuma", "Socks", "Nall", "Peep", "Harold", "Oisin", "Hawke", "Ashton", "Chip", "Dale", "Hank", "Milo", "Sunny", "Pants"
+]
+
+[[pool]]
+id = 101
+source = "vanilla"
+sex = "female"
+category = "original"
+enabled_by_default = false
+names = [
+  "Kiki", "Zozo", "Pepper", "Poppy", "Juno", "Luna", "Aurora", "Maggie", "Cricket", "Tux", "Ethel", "Cinnamon", "Grendel", "Daisy", "Pepita", "Misha", "Mika", "Apple", "Leaf", "Alsie", "Elly", "Fanny", "Miki", "Dixie", "Tiny", "Breezy", "Sweetheart", "Millie", "Stormy", "Toro", "Dolly", "Sammy", "Bo", "Boo", "Shrimp", "Loaf", "Cake", "Pancake", "Pudding", "Bean", "Koro", "Chappy", "Kuma", "Peep", "Suzy", "Beebee", "Jade", "Charlotte", "Piper", "Carmen", "Erin", "Leslie", "Lemon"
+]

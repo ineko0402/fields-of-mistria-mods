@@ -1,47 +1,201 @@
 // Japanese Animal Names
 // User-editable config: mod_data/japanese_animal_names/japanese_animal_names.json
 
-#macro JAPANESE_ANIMAL_NAMES_CONFIG_VERSION 2
+#macro JAPANESE_ANIMAL_NAMES_CONFIG_VERSION 5
 
 function __japanese_animal_names_runtime() {
     if (global[$ "__japanese_animal_names"] == undefined) {
-        global.__japanese_animal_names = { cfg: undefined, applied: false };
+        global.__japanese_animal_names = { cfg: undefined, applied: false, ui_registered: false };
     }
     return global.__japanese_animal_names;
 }
 
+// <generated-name-catalog>
+// Generated from catalog/name-catalog.toml. Do not edit by hand.
+// Run tools/Build-JapaneseAnimalNamesCatalog.ps1 after editing the TOML.
+
 function japanese_animal_names_pet_style() {
     return [
-        "ココ", "モモ", "モコ", "ルル", "ララ", "ナナ", "ミミ", "ニコ", "ポポ", "ピピ",
-        "リン", "メイ", "マル", "ポン", "ハナ", "ソラ", "ユキ", "ツキ", "モフ"
+        "ココ",
+        "モモ",
+        "モコ",
+        "ルル",
+        "ララ",
+        "ナナ",
+        "ミミ",
+        "ニコ",
+        "ポポ",
+        "ピピ",
+        "リン",
+        "メイ",
+        "マル",
+        "ポン",
+        "ハナ",
+        "ソラ",
+        "ユキ",
+        "ツキ",
+        "モフ",
+        "チロ"
     ];
 }
 
 function japanese_animal_names_sweets() {
     return [
-        "モチ", "アンコ", "ダンゴ", "オハギ", "キナコ", "アズキ", "ミルク", "ココア", "チョコ",
-        "プリン", "クッキー", "マカロン", "シフォン", "バニラ", "キャラメル", "ハチミツ", "ミツ", "マメ",
-        "カステラ", "ドラヤキ"
+        "モチ",
+        "アンコ",
+        "ダンゴ",
+        "オハギ",
+        "キナコ",
+        "アズキ",
+        "ミルク",
+        "ココア",
+        "チョコ",
+        "プリン",
+        "クッキー",
+        "マカロン",
+        "シフォン",
+        "バニラ",
+        "キャラメル",
+        "ハチミツ",
+        "ミツ",
+        "マメ",
+        "カステラ",
+        "ドラヤキ"
     ];
 }
 
-function japanese_animal_names_season_weather() {
-    return ["ハル", "ナツ", "アキ", "フユ", "ツユ", "ミゾレ", "コヨミ"];
+function japanese_animal_names_season_nature() {
+    return [
+        "ハル",
+        "ナツ",
+        "アキ",
+        "フユ",
+        "ツユ",
+        "ミゾレ",
+        "コヨミ",
+        "アサヒ",
+        "ユウヒ",
+        "ワカバ",
+        "モミジ",
+        "コハル",
+        "コナツ",
+        "ナギサ",
+        "アラレ",
+        "ヒナタ",
+        "イズミ",
+        "シズク",
+        "ホクト",
+        "シグレ",
+        "カスミ"
+    ];
 }
 
-function japanese_animal_names_nature() {
+function japanese_animal_names_flower_plant() {
     return [
-        "サクラ", "ホシ", "カゼ", "アサヒ", "ユウヒ", "ワカバ", "モミジ", "コハル", "コナツ",
-        "スズカゼ", "ナギサ", "アラレ", "ハツユキ"
+        "ツバキ",
+        "スミレ",
+        "ボタン",
+        "キキョウ",
+        "ヒマワリ",
+        "タンポポ",
+        "スズラン",
+        "ユリ",
+        "ハギ",
+        "ヨモギ",
+        "クルミ",
+        "カエデ",
+        "ビワ",
+        "ユズ",
+        "マツ",
+        "ウメ",
+        "リンドウ",
+        "ツツジ",
+        "サクラ",
+        "カリン",
+        "アヤメ",
+        "アンズ",
+        "キク",
+        "シオン"
     ];
 }
 
 function japanese_animal_names_color_inspired() {
     return [
-        "コガネ", "アサギ", "アカネ", "エンジ", "スオウ", "ルリ", "コンペキ", "フジ", "ナデシコ",
-        "アヤメ", "ヒスイ", "カスミ", "トキ", "ウグイス", "カラシ", "アケ", "アオニ", "コハク"
+        "コガネ",
+        "アサギ",
+        "アカネ",
+        "エンジ",
+        "スオウ",
+        "ルリ",
+        "コンペキ",
+        "フジ",
+        "ナデシコ",
+        "ヒスイ",
+        "トキ",
+        "ウグイス",
+        "カラシ",
+        "アケ",
+        "アオニ",
+        "コハク",
+        "アイ",
+        "ベニ",
+        "サンゴ",
+        "モエギ",
+        "オリベ",
+        "コン",
+        "トキハ",
+        "ハネズ",
+        "ヤマブキ"
     ];
 }
+
+function japanese_animal_names_vanilla_inspired() {
+    return [
+        "ピクルス",
+        "トースト",
+        "マンゴー",
+        "ココナッツ",
+        "バゲット",
+        "ピーナッツ",
+        "バター",
+        "ローフ",
+        "ケーキ",
+        "パンケーキ",
+        "ペッパー",
+        "シナモン",
+        "アップル",
+        "レモン",
+        "エビ",
+        "クマ",
+        "クロ",
+        "ゴンタ",
+        "リーフ",
+        "デイジー",
+        "ポピー",
+        "ジェイド",
+        "オーロラ",
+        "サニー",
+        "ストーミー",
+        "ブリージー",
+        "ターボ",
+        "ソックス",
+        "ハート",
+        "ジュノ",
+        "ルナ",
+        "オリバー",
+        "フィン",
+        "チャーリー",
+        "ミカ",
+        "ミーシャ",
+        "シャーロット",
+        "パイパー",
+        "カーメン",
+        "エリン",
+        "レスリー"
+    ];
+}
+
+// </generated-name-catalog>
 
 function japanese_animal_names_append(_target, _source) {
     for (var _index = 0; _index < array_length(_source); _index++) {
@@ -54,8 +208,8 @@ function japanese_animal_names_defaults() {
     var _names = [];
     _names = japanese_animal_names_append(_names, japanese_animal_names_pet_style());
     _names = japanese_animal_names_append(_names, japanese_animal_names_sweets());
-    _names = japanese_animal_names_append(_names, japanese_animal_names_season_weather());
-    _names = japanese_animal_names_append(_names, japanese_animal_names_nature());
+    _names = japanese_animal_names_append(_names, japanese_animal_names_season_nature());
+    _names = japanese_animal_names_append(_names, japanese_animal_names_flower_plant());
     _names = japanese_animal_names_append(_names, japanese_animal_names_color_inspired());
     return _names;
 }
@@ -64,9 +218,10 @@ function japanese_animal_names_category_defaults() {
     return {
         pet_style: true,
         sweets: true,
-        season_weather: true,
-        nature: true,
+        season_nature: true,
+        flower_plant: true,
         color_inspired: true,
+        vanilla_inspired: true,
         custom: true,
     };
 }
@@ -116,9 +271,25 @@ function japanese_animal_names_read_categories(_source, _fallback) {
     return {
         pet_style: japanese_animal_names_config_bool(_categories, "pet_style", _fallback.pet_style),
         sweets: japanese_animal_names_config_bool(_categories, "sweets", _fallback.sweets),
-        season_weather: japanese_animal_names_config_bool(_categories, "season_weather", _fallback.season_weather),
-        nature: japanese_animal_names_config_bool(_categories, "nature", _fallback.nature),
+        season_nature: japanese_animal_names_config_bool(_categories, "season_nature", _fallback.season_nature),
+        flower_plant: japanese_animal_names_config_bool(_categories, "flower_plant", _fallback.flower_plant),
         color_inspired: japanese_animal_names_config_bool(_categories, "color_inspired", _fallback.color_inspired),
+        vanilla_inspired: japanese_animal_names_config_bool(_categories, "vanilla_inspired", _fallback.vanilla_inspired),
+        custom: japanese_animal_names_config_bool(_categories, "custom", _fallback.custom),
+    };
+}
+
+function japanese_animal_names_read_v2_categories(_source, _fallback) {
+    var _categories = is_struct(_source) ? _source : {};
+    var _season_weather = japanese_animal_names_config_bool(_categories, "season_weather", _fallback.season_nature);
+    var _nature = japanese_animal_names_config_bool(_categories, "nature", _fallback.season_nature);
+    return {
+        pet_style: japanese_animal_names_config_bool(_categories, "pet_style", _fallback.pet_style),
+        sweets: japanese_animal_names_config_bool(_categories, "sweets", _fallback.sweets),
+        season_nature: _season_weather || _nature,
+        flower_plant: _fallback.flower_plant,
+        color_inspired: japanese_animal_names_config_bool(_categories, "color_inspired", _fallback.color_inspired),
+        vanilla_inspired: japanese_animal_names_config_bool(_categories, "vanilla_inspired", _fallback.vanilla_inspired),
         custom: japanese_animal_names_config_bool(_categories, "custom", _fallback.custom),
     };
 }
@@ -135,7 +306,22 @@ function japanese_animal_names_config() {
     if (_version == JAPANESE_ANIMAL_NAMES_CONFIG_VERSION) {
         _rt.cfg = {
             enabled: japanese_animal_names_config_bool(_source, "enabled", true),
+            use_naming_popup: japanese_animal_names_config_bool(_source, "use_naming_popup", true),
             categories: japanese_animal_names_read_categories(_source[$ "categories"], _category_defaults),
+            custom_names: japanese_animal_names_validated_names(_source[$ "custom_names"], []),
+        };
+    } else if (_version == 4 || _version == 3) {
+        _rt.cfg = {
+            enabled: japanese_animal_names_config_bool(_source, "enabled", true),
+            use_naming_popup: true,
+            categories: japanese_animal_names_read_categories(_source[$ "categories"], _category_defaults),
+            custom_names: japanese_animal_names_validated_names(_source[$ "custom_names"], []),
+        };
+    } else if (_version == 2) {
+        _rt.cfg = {
+            enabled: japanese_animal_names_config_bool(_source, "enabled", true),
+            use_naming_popup: true,
+            categories: japanese_animal_names_read_v2_categories(_source[$ "categories"], _category_defaults),
             custom_names: japanese_animal_names_validated_names(_source[$ "custom_names"], []),
         };
     } else if (_version == 1 && is_array(_source[$ "names"])) {
@@ -146,18 +332,21 @@ function japanese_animal_names_config() {
         if (japanese_animal_names_same_names(_legacy_names, _defaults)) {
             _rt.cfg = {
                 enabled: true,
+                use_naming_popup: true,
                 categories: _category_defaults,
                 custom_names: [],
             };
         } else {
             _rt.cfg = {
                 enabled: true,
+                use_naming_popup: true,
                 categories: {
                     pet_style: false,
                     sweets: false,
-                    season_weather: false,
-                    nature: false,
+                    season_nature: false,
+                    flower_plant: false,
                     color_inspired: false,
+                    vanilla_inspired: false,
                     custom: true,
                 },
                 custom_names: _legacy_names,
@@ -166,6 +355,7 @@ function japanese_animal_names_config() {
     } else {
         _rt.cfg = {
             enabled: true,
+            use_naming_popup: true,
             categories: _category_defaults,
             custom_names: [],
         };
@@ -179,9 +369,10 @@ function japanese_animal_names_selected_names(_cfg) {
     var _names = [];
     if (_cfg.categories.pet_style) _names = japanese_animal_names_append(_names, japanese_animal_names_pet_style());
     if (_cfg.categories.sweets) _names = japanese_animal_names_append(_names, japanese_animal_names_sweets());
-    if (_cfg.categories.season_weather) _names = japanese_animal_names_append(_names, japanese_animal_names_season_weather());
-    if (_cfg.categories.nature) _names = japanese_animal_names_append(_names, japanese_animal_names_nature());
+    if (_cfg.categories.season_nature) _names = japanese_animal_names_append(_names, japanese_animal_names_season_nature());
+    if (_cfg.categories.flower_plant) _names = japanese_animal_names_append(_names, japanese_animal_names_flower_plant());
     if (_cfg.categories.color_inspired) _names = japanese_animal_names_append(_names, japanese_animal_names_color_inspired());
+    if (_cfg.categories.vanilla_inspired) _names = japanese_animal_names_append(_names, japanese_animal_names_vanilla_inspired());
     if (_cfg.categories.custom) _names = japanese_animal_names_append(_names, _cfg.custom_names);
     return japanese_animal_names_validated_names(_names, []);
 }
@@ -189,6 +380,11 @@ function japanese_animal_names_selected_names(_cfg) {
 function japanese_animal_names_apply_config() {
     var _rt = __japanese_animal_names_runtime();
     if (_rt.applied) return;
+
+    // FiddleParsers creates the native lists during game startup. The names
+    // exposed in that script are macros for these two actual global fields;
+    // wait until they exist, then replace the lists once.
+    if (global.__male_animal_names == undefined || global.__female_animal_names == undefined) return;
 
     var _cfg = japanese_animal_names_config();
     // Do not overwrite either native pool when the MOD is disabled, or when
@@ -204,10 +400,58 @@ function japanese_animal_names_apply_config() {
         return;
     }
 
-    global[$ "MALE_ANIMAL_NAMES"] = ListFromArray(_names);
-    global[$ "FEMALE_ANIMAL_NAMES"] = ListFromArray(_names);
+    global.__male_animal_names = ListFromArray(_names);
+    global.__female_animal_names = ListFromArray(_names);
     _rt.applied = true;
 }
 
-mmapi_mod_declare("japanese_animal_names", "1.4.0");
+function japanese_animal_names_open_naming_popup(_menu) {
+    if (_menu == undefined || _menu.selected_animal == undefined) return;
+
+    var _animal = _menu.selected_animal;
+    var _popup = create_animal_naming_popup(_animal);
+    // Popup callbacks do not retain variables from this function's scope.
+    // Pass the popup explicitly alongside the target animal instead.
+    _popup.create_button("misc_local/confirm", function(_menu, _animal, _popup_to_save) {
+        if (_menu == undefined || _menu.selected_animal == undefined) return;
+        if (_popup_to_save == undefined) return;
+        _animal.name = _popup_to_save.name_input.get_text();
+        _menu.select_animal(_animal);
+        _menu.right_pilot.force_select(_menu.name_field);
+    }, [_menu, _animal, _popup], undefined, InputId.Interact);
+    _popup.spawn();
+}
+
+function japanese_animal_names_attach_naming_popup(_probe, _menu) {
+    if (_probe.freed || _menu == undefined || _menu.selected_animal == undefined) return;
+    if (_menu.name_field == undefined || _menu.name_field.freed) return;
+    if (_menu.name_field.blackboard.contains_key("__japanese_animal_names_naming_popup")) return;
+
+    var _cfg = japanese_animal_names_config();
+    if (!_cfg.enabled || !_cfg.use_naming_popup) return;
+
+    _menu.name_field.board_set("__japanese_animal_names_naming_popup", true);
+    _menu.name_field.set_tap_callback(japanese_animal_names_open_naming_popup, [_menu], true);
+}
+
+function japanese_animal_names_on_menu_opened(_ctx) {
+    var _menu = _ctx[$ "menu"];
+    if (_menu == undefined || _menu[$ "type"] != Menu.Animal) return;
+
+    // This parent persists while the journal rebuilds its individual fields.
+    // The probe replaces each newly selected animal's text-only rename action
+    // with the native naming popup and is cleaned up when the menu closes.
+    var _probe = ANCHOR.positional(_menu.journal.right_full_body).set_size(1, 1);
+    _probe.set_think_callback(japanese_animal_names_attach_naming_popup, [_probe, _menu]);
+}
+
+function japanese_animal_names_register_ui() {
+    var _rt = __japanese_animal_names_runtime();
+    if (_rt.ui_registered) return;
+    _rt.ui_registered = true;
+    mmapi_on("ui.menu_opened", japanese_animal_names_on_menu_opened);
+}
+
+mmapi_mod_declare("japanese_animal_names", "1.8.1");
+japanese_animal_names_register_ui();
 mmapi_register(japanese_animal_names_apply_config);
