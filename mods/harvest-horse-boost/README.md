@@ -48,7 +48,7 @@
 3. MOMIで **Install** を実行します。
 4. ゲームを起動してセーブデータを開きます。
 
-常時ONで、専用のキー操作はありません。
+初期状態ではONで、専用のキー操作はありません。設定ファイルの `enabled` を `false` にすると、このMODの全機能を停止できます。
 
 ## 設定
 
@@ -63,25 +63,27 @@
 ```json
 {
   "__config_version": 2,
+  "enabled": true,
   "foot_radius_tiles": 1,
   "mounted_radius_tiles": 2,
   "harvest_fruit_bushes": true,
   "harvest_fruit_trees": true,
   "mounted_auto_excavation": true,
   "auto_dismount_indoors": true,
-  "debug_notifications": true
+  "debug_notifications": false
 }
 ```
 
 | 設定名 | 初期値 | 内容 |
 | --- | --- | --- |
+| `enabled` | `true` | `false` にすると、自動収穫・自動発掘・自動降車をすべて停止します。 |
 | `foot_radius_tiles` | `1` | 徒歩時の自動収穫範囲。0〜4マス。 |
 | `mounted_radius_tiles` | `2` | 騎乗時の自動収穫・自動発掘範囲。0〜4マス。 |
 | `harvest_fruit_bushes` | `true` | 収穫可能な低木を対象にするか。 |
 | `harvest_fruit_trees` | `true` | 実のある果樹を対象にするか。 |
 | `mounted_auto_excavation` | `true` | 騎乗中の遺物ポイント自動発掘を有効にするか。 |
 | `auto_dismount_indoors` | `true` | 屋内へ続く入口で自動的に馬から降りるか。 |
-| `debug_notifications` | `true` | 徒歩／騎乗の状態通知を表示するか。 |
+| `debug_notifications` | `false` | 開発・確認用。徒歩／騎乗の状態通知を表示するか。 |
 
 範囲 `n` は、プレイヤーを中心とする `(2n + 1) × (2n + 1)` マスです。たとえば範囲2は5×5マスです。
 

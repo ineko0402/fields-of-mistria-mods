@@ -34,13 +34,16 @@ function harvest_horse_boost_config() {
     var _source = mmapi_config_load("harvest_horse_boost");
     var _legacy_auto_shovel = mmapi_config_bool(_source, "mounted_auto_shovel", true);
     _rt.cfg = {
+        // Missing from pre-1.1.6 settings: default to ON so upgrading does
+        // not silently disable an existing installation.
+        enabled: mmapi_config_bool(_source, "enabled", true),
         foot_radius_tiles: mmapi_config_number(_source, "foot_radius_tiles", 1, 0, 4),
         mounted_radius_tiles: mmapi_config_number(_source, "mounted_radius_tiles", 2, 0, 4),
         harvest_fruit_bushes: mmapi_config_bool(_source, "harvest_fruit_bushes", true),
         harvest_fruit_trees: mmapi_config_bool(_source, "harvest_fruit_trees", true),
         mounted_auto_excavation: mmapi_config_bool(_source, "mounted_auto_excavation", _legacy_auto_shovel),
         auto_dismount_indoors: mmapi_config_bool(_source, "auto_dismount_indoors", true),
-        debug_notifications: mmapi_config_bool(_source, "debug_notifications", true),
+        debug_notifications: mmapi_config_bool(_source, "debug_notifications", false),
     };
     mmapi_config_write("harvest_horse_boost", HARVEST_HORSE_BOOST_CONFIG_VERSION, _rt.cfg);
     return _rt.cfg;
@@ -208,6 +211,7 @@ function harvest_horse_boost_tick() {
 
     var _rt = __harvest_horse_boost_runtime();
     var _cfg = harvest_horse_boost_config();
+    if (!_cfg.enabled) return;
     var _mounted = obj_ari.is_mounted();
 
     if (_cfg.auto_dismount_indoors) {
@@ -256,5 +260,5 @@ function harvest_horse_boost_register() {
     mmapi_register(harvest_horse_boost_tick);
 }
 
-mmapi_mod_declare("harvest_horse_boost", "1.1.5");
+mmapi_mod_declare("harvest_horse_boost", "1.1.6");
 harvest_horse_boost_register();
