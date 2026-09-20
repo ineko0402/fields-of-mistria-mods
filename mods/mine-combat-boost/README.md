@@ -3,6 +3,23 @@
 Small combat assists for special mine-enemy mechanics. The MOD does not edit
 game assets or change ordinary monster health and damage.
 
+## 注意：ゲームプレイ難易度への影響 — 高
+
+一部の敵攻撃を自動で反射・回収・無効化し、特殊な敵への攻撃を通しやすくします。鉱山での危険と必要な操作を大きく減らす、戦闘補助／チート寄りのMODです。
+
+## 変更すること
+
+- Rockclodの石・突進、爆弾、Sonic Boom、Flame Spiritの火球など、特定の敵ギミックを自動処理します。
+- 殻状態のキノコへプレイヤー側の攻撃を通せるようにします。
+
+## 変更しないこと
+
+- 通常の敵の体力、攻撃力、出現率、ドロップ率、経験値。
+- Rock Stack、Mimicなど、状態遷移を伴う無敵処理。
+- ゲーム本体の敵データやアセット。
+
+動作確認・不具合の記録は、リポジトリ直下の [COMPATIBILITY_AND_BUG_LOG.md](../../COMPATIBILITY_AND_BUG_LOG.md) を参照してください。
+
 ## Features
 
 - **Auto-reflect Rockclod stones:** A normal Rockclod stone that comes close

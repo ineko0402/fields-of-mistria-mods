@@ -10,6 +10,23 @@ higher output value, `-n` for a lower output value, and `±0` when unchanged.
 It works in all native crafting menus that use the shared crafting interface,
 including woodcrafting, blacksmithing, cooking, and milling.
 
+## 注意：ゲームプレイ難易度への影響 — 低
+
+クラフト画面へ売却価値の目安を表示するだけの情報補助MODです。レシピ、材料、クラフト結果、時間、販売価格には影響しません。
+
+## 変更すること
+
+- クラフトプレビューに、完成品の出荷額から素材の出荷額を引いた差額を表示します。
+- 選択レシピとクラフト個数に合わせて、`+n`、`-n`、`±0` を更新します。
+
+## 変更しないこと
+
+- レシピ、素材の消費数、完成品、クラフト時間、品質、販売価格。
+- エッセンス・時間・直接のゴールド消費を含む厳密な損益計算。
+- ゲーム本体のクラフト画面データ。
+
+動作確認・不具合の記録は、リポジトリ直下の [COMPATIBILITY_AND_BUG_LOG.md](../../COMPATIBILITY_AND_BUG_LOG.md) を参照してください。
+
 ## Requirements
 
 - Fields of Mistria

@@ -9,6 +9,23 @@ while the inventory is open.
 Pocket Shipping changes no game assets and does not change the trash buttons in
 storage menus.
 
+## 注意：ゲームプレイ難易度への影響 — 中
+
+アイテムをその場で売却して即時にお金を得られるため、出荷箱へ運ぶ手間と翌日までの待ち時間を省略します。誤売却は元に戻せません。
+
+## 変更すること
+
+- プレイヤーインベントリのゴミ箱ボタンを、対象アイテムを即時売却するボタンへ置き換えます。
+- インベントリを開いている間、売却後の所持金と `+金額` を表示します。
+
+## 変更しないこと
+
+- 収納箱など、プレイヤーインベントリ以外のゴミ箱ボタン。
+- アイテムの売却価格、品質、出荷可能かどうかのゲームデータ。
+- 翌日の出荷箱サマリーに即時売却を追加すること。
+
+動作確認・不具合の記録は、リポジトリ直下の [COMPATIBILITY_AND_BUG_LOG.md](../../COMPATIBILITY_AND_BUG_LOG.md) を参照してください。
+
 ## Requirements
 
 - Fields of Mistria

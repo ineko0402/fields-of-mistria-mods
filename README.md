@@ -18,6 +18,7 @@
 - ゲーム本体のアセットは直接変更しません。
 - 配布用ZIP、利用者の設定ファイル、ログ、MOMIの生成物はリポジトリに含めません。
 - 配布前には [MOD_CHECKLIST.md](MOD_CHECKLIST.md) を使って確認します。
+- ゲーム本編・MOMI更新時の確認結果と不具合の履歴は、[COMPATIBILITY_AND_BUG_LOG.md](COMPATIBILITY_AND_BUG_LOG.md) に記録します。
 - 各MODのゲーム内作者表記は `mitarasi35`、GitHubの管理アカウントは `ineko0402` です。
 
 ## 配布
