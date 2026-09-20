@@ -11,6 +11,7 @@
 | [Map Warp](mods/map-warp/README.md) | マップ画面から解放済みの屋外地域へワープします。 | 0.1.5 |
 | [Mine Combat Boost](mods/mine-combat-boost/README.md) | Rockclodの投射物・突進、特殊な敵攻撃を扱いやすくする戦闘補助です。 | 0.1.3 |
 | [Pocket Shipping](mods/pocket-shipping/README.md) | インベントリのゴミ箱から、アイテムを即時に出荷価格で売却します。 | 0.1.1 |
+| [Crafting Cost](mods/crafting-cost/README.md) | クラフト後の出荷額と素材の出荷額の差を表示します。 | 0.1.1 |
 
 ## 方針
 
