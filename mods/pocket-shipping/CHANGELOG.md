@@ -1,5 +1,11 @@
 # Changelog
 
+## 0.1.2 — 2026-09-22
+
+- Match the MMAPI-declared version with the manifest version.
+- Declare the required `ui.menu_opened` hook for clearer MOMI compatibility checks.
+- Use MOMI's version-validated configuration reader.
+
 ## 0.1.1 — 2026-09-19
 
 - Added the game's standard live gold counter and animated `+amount` feedback

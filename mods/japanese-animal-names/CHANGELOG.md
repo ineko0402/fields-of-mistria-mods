@@ -1,5 +1,10 @@
 # Changelog
 
+## 1.8.2 — 2026-09-22
+
+- Register the startup name-pool application once through the MOD's latched registration path.
+- Declare the required `ui.menu_opened` hook for clearer MOMI compatibility checks.
+
 ## 1.8.1 — 2026-09-19
 
 - Fixed saving an edited name from the native naming popup. The popup is now

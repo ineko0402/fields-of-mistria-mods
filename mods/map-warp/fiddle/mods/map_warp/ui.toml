@@ -1,0 +1,3 @@
+warp_button = "Warp Here"
+confirm_warp = "Warp to this location?"
+location_locked = "This location is not unlocked yet."

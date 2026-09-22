@@ -1,0 +1,5 @@
+choose_infusion = "Choose Infusion"
+cancel = "Cancel"
+normal_craft = "Normal Craft (Random)"
+not_enough_essence = "Not enough Essence."
+infusion_option = "{} ({} Essence)"

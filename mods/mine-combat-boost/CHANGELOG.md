@@ -1,5 +1,10 @@
 # Changelog
 
+## 0.1.4 — 2026-09-22
+
+- Declare the required `combat.damage` hook for clearer MOMI compatibility checks.
+- Use MOMI's version-validated configuration reader.
+
 ## 0.1.3
 
 - Added automatic Sonic Boom activation for nearby Essence Bat sonic waves,

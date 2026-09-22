@@ -6,12 +6,14 @@
 
 | MOD | 内容 | 現在の版 |
 | --- | --- | --- |
-| [Japanese Animal Names](mods/japanese-animal-names/README.md) | 動物のランダム名候補を日本語名に置き換え、名前グループを設定できます。 | 1.8.1 |
+| [Japanese Animal Names](mods/japanese-animal-names/README.md) | 動物のランダム名候補を日本語名に置き換え、名前グループを設定できます。 | 1.8.2 |
 | [Harvest Horse Boost](mods/harvest-horse-boost/README.md) | ミストホースの Harvest Horse を、収穫・発掘・自動降車で使いやすくします。 | 1.1.6 |
-| [Map Warp](mods/map-warp/README.md) | マップ画面から解放済みの屋外地域へワープします。 | 0.1.5 |
-| [Mine Combat Boost](mods/mine-combat-boost/README.md) | Rockclodの投射物・突進、特殊な敵攻撃を扱いやすくする戦闘補助です。 | 0.1.3 |
-| [Pocket Shipping](mods/pocket-shipping/README.md) | インベントリのゴミ箱から、アイテムを即時に出荷価格で売却します。 | 0.1.1 |
-| [Crafting Cost](mods/crafting-cost/README.md) | クラフト後の出荷額と素材の出荷額の差を表示します。 | 0.1.1 |
+| [Map Warp](mods/map-warp/README.md) | マップ画面から解放済みの屋外地域へワープします。 | 0.1.6 |
+| [Mine Combat Boost](mods/mine-combat-boost/README.md) | Rockclodの投射物・突進、特殊な敵攻撃を扱いやすくする戦闘補助です。 | 0.1.4 |
+| [Pocket Shipping](mods/pocket-shipping/README.md) | インベントリのゴミ箱から、アイテムを即時に出荷価格で売却します。 | 0.1.2 |
+| [Crafting Cost](mods/crafting-cost/README.md) | クラフト後の出荷額と素材の出荷額の差を表示します。 | 0.1.2 |
+| [Essence Infusion Choice](mods/essence-infusion-choice/README.md) | 魔素を使い、クラフトの追加効果を指定できます。 | 0.1.1 |
+| [Essence Infusion Choice](mods/essence-infusion-choice/README.md) | 魔素を使い、クラフトの追加効果を指定できます。 | 0.1.0 |
 
 ## 方針
 

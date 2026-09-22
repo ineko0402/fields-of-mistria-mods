@@ -1,5 +1,6 @@
 name = "Japanese Animal Names"
 author = "mitarasi35"
-version = "1.8.1"
-minInstallerVersion = "0.14.0"
+version = "1.8.2"
+minInstallerVersion = "0.16.4"
 manifestVersion = 1
+requires_hooks = ["ui.menu_opened"]

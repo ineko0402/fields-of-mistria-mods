@@ -1,11 +1,29 @@
 // Map Warp
 // Adds a confirmed, fixed-destination warp action to the game's map menu.
 
+#macro MAP_WARP_TEXT_BUTTON "mods/map_warp/ui/warp_button"
+#macro MAP_WARP_TEXT_CONFIRM "mods/map_warp/ui/confirm_warp"
+#macro MAP_WARP_TEXT_LOCKED "mods/map_warp/ui/location_locked"
+
 function __map_warp_runtime() {
     if (global[$ "__map_warp"] == undefined) {
         global.__map_warp = { registered: false };
     }
     return global.__map_warp;
+}
+
+function map_warp_local_get(_value, _key) {
+    // English strings come from the fiddle file. Japanese is supplied only
+    // for this MOD's keys, through MOMI's standard localization filter.
+    switch _key {
+        case MAP_WARP_TEXT_BUTTON:
+            return local_language() == "jpn" ? "ここへワープ" : undefined;
+        case MAP_WARP_TEXT_CONFIRM:
+            return local_language() == "jpn" ? "ワープしますか？" : undefined;
+        case MAP_WARP_TEXT_LOCKED:
+            return local_language() == "jpn" ? "この地域はまだ解放されていません。" : undefined;
+    }
+    return undefined;
 }
 
 function map_warp_is_outdoor_target(_location_id) {
@@ -62,7 +80,7 @@ function map_warp_show_confirmation(_map_menu) {
     if (!map_warp_is_unlocked(_location_id)) {
         var _locked_popup = popup_creator(
             "misc_local/confirmation",
-            ANCHOR.wrap_for_local("この地域はまだ解放されていません。")
+            MAP_WARP_TEXT_LOCKED
         );
         _locked_popup.create_button("misc_local/close");
         _locked_popup.spawn();
@@ -73,7 +91,7 @@ function map_warp_show_confirmation(_map_menu) {
 
     var _popup = popup_creator(
         "misc_local/confirmation",
-        ANCHOR.wrap_for_local("ワープしますか？")
+        MAP_WARP_TEXT_CONFIRM
     );
     _popup.create_button("misc_local/cancel");
     _popup.create_button("misc_local/yes", map_warp_confirm, [_map_menu, _location_id]);
@@ -119,7 +137,7 @@ function map_warp_attach_button(_probe, _map_menu) {
     ANCHOR.text(_button)
         .set_align(Align.Center, Align.Middle)
         .set_lut(COMMON_LUT, CommonLutIndex.Dark)
-        .set_text("ここへワープ");
+        .set_key(MAP_WARP_TEXT_BUTTON);
     _button.set_think_callback(function(_button, _map_menu) {
         var _valid = _map_menu != undefined
             && _map_menu.selected_location_id != undefined
@@ -145,7 +163,8 @@ function map_warp_register() {
     if (_rt.registered) return;
     _rt.registered = true;
     mmapi_on("ui.menu_opened", map_warp_on_menu_opened);
+    mmapi_filter("local.get", map_warp_local_get);
 }
 
-mmapi_mod_declare("map_warp", "0.1.5");
+mmapi_mod_declare("map_warp", "0.1.6");
 map_warp_register();

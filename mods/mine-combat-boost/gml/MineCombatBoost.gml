@@ -19,7 +19,7 @@ function mine_combat_boost_config() {
     var _rt = __mine_combat_boost_runtime();
     if (_rt.cfg != undefined) return _rt.cfg;
 
-    var _source = mmapi_config_load("mine_combat_boost");
+    var _source = mmapi_config_read_valid("mine_combat_boost", MINE_COMBAT_BOOST_CONFIG_VERSION);
     _rt.cfg = {
         enabled: mmapi_config_bool(_source, "enabled", true),
         auto_reflect_rocks: mmapi_config_bool(_source, "auto_reflect_rocks", true),
@@ -199,5 +199,5 @@ function mine_combat_boost_register() {
     mmapi_filter("combat.damage", mine_combat_boost_damage_filter);
 }
 
-mmapi_mod_declare("mine_combat_boost", "0.1.3");
+mmapi_mod_declare("mine_combat_boost", "0.1.4");
 mine_combat_boost_register();

@@ -450,8 +450,8 @@ function japanese_animal_names_register_ui() {
     if (_rt.ui_registered) return;
     _rt.ui_registered = true;
     mmapi_on("ui.menu_opened", japanese_animal_names_on_menu_opened);
+    mmapi_register(japanese_animal_names_apply_config);
 }
 
-mmapi_mod_declare("japanese_animal_names", "1.8.1");
+mmapi_mod_declare("japanese_animal_names", "1.8.2");
 japanese_animal_names_register_ui();
-mmapi_register(japanese_animal_names_apply_config);

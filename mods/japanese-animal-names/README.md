@@ -1,6 +1,6 @@
 # Japanese Animal Names
 
-Fields of Mistria のランダム命名候補を日本語化する MOMI 用 MOD です。MOMI (Mods of Mistria Installer) 0.14.0 以降が必要です。候補はゲーム本体やMODフォルダとは別のJSON設定ファイルで編集できます。
+Fields of Mistria のランダム命名候補を日本語化する MOMI 用 MOD です。MOMI (Mods of Mistria Installer) 0.16.4 以降が必要です。候補はゲーム本体やMODフォルダとは別のJSON設定ファイルで編集できます。
 
 対象は、ニワトリ、アヒル、ウサギ、牛、羊、アルパカ、カピバラ、馬、ペットを含む、共通のランダム命名画面を使用するすべての動物です。初期状態では雌雄共通の151個の日本語候補から抽選します。
 

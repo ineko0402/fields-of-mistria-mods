@@ -1,5 +1,10 @@
 # Changelog
 
+## 0.1.2 — 2026-09-22
+
+- Declare the required `ui.menu_opened` hook so MOMI can report an incompatible game build during installation.
+- Use MOMI's version-validated configuration reader.
+
 ## 0.1.1 — 2026-09-20
 
 - Replaced the material-cost display with output shipping value minus material

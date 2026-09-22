@@ -30,7 +30,7 @@ including woodcrafting, blacksmithing, cooking, and milling.
 ## Requirements
 
 - Fields of Mistria
-- Mods of Mistria Installer (MOMI) 0.15.10 or newer
+- Mods of Mistria Installer (MOMI) 0.16.4 or newer
 
 ## Installation
 

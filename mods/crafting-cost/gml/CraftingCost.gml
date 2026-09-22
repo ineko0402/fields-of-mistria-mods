@@ -17,7 +17,7 @@ function crafting_cost_config() {
     var _rt = __crafting_cost_runtime();
     if (_rt.cfg != undefined) return _rt.cfg;
 
-    var _source = mmapi_config_load("crafting_cost");
+    var _source = mmapi_config_read_valid("crafting_cost", CRAFTING_COST_CONFIG_VERSION);
     _rt.cfg = {
         enabled: mmapi_config_bool(_source, "enabled", true),
     };
@@ -132,5 +132,5 @@ function crafting_cost_register() {
     mmapi_on("ui.menu_opened", crafting_cost_on_menu_opened);
 }
 
-mmapi_mod_declare("crafting_cost", "0.1.1");
+mmapi_mod_declare("crafting_cost", "0.1.2");
 crafting_cost_register();

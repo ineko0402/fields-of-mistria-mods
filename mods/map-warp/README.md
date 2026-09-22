@@ -32,4 +32,4 @@
 
 ゲーム本体・Cheats Menuは変更しません。
 
-Author: mitarasi35. MOMI 0.14.3以降が必要です。
+Author: mitarasi35. MOMI 0.16.4以降が必要です。

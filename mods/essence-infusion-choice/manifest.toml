@@ -1,6 +1,6 @@
-name = "Map Warp"
+name = "Essence Infusion Choice"
 author = "mitarasi35"
-version = "0.1.6"
+version = "0.1.1"
 minInstallerVersion = "0.16.4"
 manifestVersion = 1
 requires_hooks = ["ui.menu_opened", "local.get"]

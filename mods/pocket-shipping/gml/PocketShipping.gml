@@ -17,7 +17,7 @@ function pocket_shipping_config() {
     var _rt = __pocket_shipping_runtime();
     if (_rt.cfg != undefined) return _rt.cfg;
 
-    var _source = mmapi_config_load("pocket_shipping");
+    var _source = mmapi_config_read_valid("pocket_shipping", POCKET_SHIPPING_CONFIG_VERSION);
     _rt.cfg = {
         enabled: mmapi_config_bool(_source, "enabled", true),
         show_gold_feedback: mmapi_config_bool(_source, "show_gold_feedback", true),
@@ -106,5 +106,5 @@ function pocket_shipping_register() {
     mmapi_on("ui.menu_opened", pocket_shipping_on_menu_opened);
 }
 
-mmapi_mod_declare("pocket_shipping", "0.1.0");
+mmapi_mod_declare("pocket_shipping", "0.1.2");
 pocket_shipping_register();
