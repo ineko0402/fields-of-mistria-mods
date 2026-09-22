@@ -1,74 +1,54 @@
 # Crafting Cost
 
-Shows the shipping-value difference for the selected crafting recipe. The
-game's existing positive value in the preview is the crafted item's normal
-shipping value; Crafting Cost adds a value beneath it for the finished item's
-shipping value minus the materials spent.
+クラフト画面に、**完成品の出荷額 − 素材の出荷額**を表示するMODです。
 
-The number updates when changing the recipe or craft quantity: `+n` for a
-higher output value, `-n` for a lower output value, and `±0` when unchanged.
-It works in all native crafting menus that use the shared crafting interface,
-including woodcrafting, blacksmithing, cooking, and milling.
+## まずこれ
 
-## 注意：ゲームプレイ難易度への影響 — 低
+- **難易度への影響：低** — 情報を表示するだけで、ゲーム内の数値や結果は変えません。
+- 選択中のレシピと作成個数に合わせて、`+n`、`-n`、`±0` を表示します。
+- 木工・鍛冶・料理・製粉など、共通のクラフト画面を使う本編の設備で動作します。
+- 必要：Fields of Mistria と MOMI 0.16.4以降。
 
-クラフト画面へ売却価値の目安を表示するだけの情報補助MODです。レシピ、材料、クラフト結果、時間、販売価格には影響しません。
+## 導入
 
-## 変更すること
+1. 配布ZIPをVortexなどで導入します。
+2. MOMIで **Install** を実行します。
+3. ゲームを起動して、クラフト台を開きます。
 
-- クラフトプレビューに、完成品の出荷額から素材の出荷額を引いた差額を表示します。
-- 選択レシピとクラフト個数に合わせて、`+n`、`-n`、`±0` を更新します。
+Steamの整合性チェックをした後は、MOMIで再度 **Install** を実行してください。
 
-## 変更しないこと
+## 設定
 
-- レシピ、素材の消費数、完成品、クラフト時間、品質、販売価格。
-- エッセンス・時間・直接のゴールド消費を含む厳密な損益計算。
-- ゲーム本体のクラフト画面データ。
-
-動作確認・不具合の記録は、リポジトリ直下の [COMPATIBILITY_AND_BUG_LOG.md](../../COMPATIBILITY_AND_BUG_LOG.md) を参照してください。
-
-## Requirements
-
-- Fields of Mistria
-- Mods of Mistria Installer (MOMI) 0.16.4 or newer
-
-## Installation
-
-1. Install the MOD ZIP with Vortex, or put the `crafting-cost` folder under the
-   game's `mods` folder.
-2. Run MOMI and choose Install.
-3. Start the game and open a crafting station.
-
-If Steam verifies the game files, run MOMI again before launching the game.
-
-## Calculation
-
-- Uses each required item's normal shipping-bin value, not the store purchase
-  price.
-- Multiplies by the material count and the selected craft quantity.
-- Includes the game's material-saving ingot perks when they apply.
-- Does not include Essence, time, or direct gold requirements: it is the value
-  of physical materials being consumed.
-- Recipes that let the player choose an ingredient category are not given a
-  guessed value.
-
-Quality is not specified by a recipe, so the display uses the base shipping
-value for that ingredient. It is an opportunity-cost guide, not a record of
-the exact individual stack the game will remove.
-
-## Settings
-
-The settings file is created after the MOD first loads:
+初回ロード後に、次のファイルが作成されます。編集する時はゲームを完全に終了し、保存後に再起動してください。
 
 `%LOCALAPPDATA%\FieldsOfMistria\mod_data\crafting_cost\crafting_cost.json`
 
-| Setting | Default | Description |
+| 設定 | 初期値 | 内容 |
 | --- | --- | --- |
-| `enabled` | `true` | Shows the shipping-value difference in crafting previews. |
+| `enabled` | `true` | クラフト画面の差額表示を有効にします。 |
 
-## Compatibility
+## 表示の意味
 
-- This MOD only adds a display node to the native crafting preview. It does
-  not alter recipes, inventory, crafting time, quality, or sale prices.
-- Do not combine it with another MOD that changes the same crafting-preview
-  price area without testing both together.
+- 素材の**店頭価格ではなく出荷額**を使います。
+- 素材数と作成個数を掛けて計算します。
+- 素材を節約するインゴット系パークが適用される場合は、その分も反映します。
+- 品質はレシピで決まらないため、素材は基本出荷額で計算します。
+
+これは「今使う素材を売っていた場合」と比べるための目安です。エッセンス、時間、直接のゴールド消費、実際に消費される個別スタックの品質は含みません。材料カテゴリを選ぶレシピも、推測値は表示しません。
+
+## 変更すること／しないこと
+
+**変更すること**
+
+- クラフトプレビューへ差額を1行追加します。
+
+**変更しないこと**
+
+- レシピ、素材消費、完成品、クラフト時間、品質、販売価格。
+- ゲーム本体のクラフト画面データ。
+
+## 互換性
+
+同じクラフトプレビューの価格表示部分を変更するMODとは、表示が重なる可能性があります。併用時は両方を有効にして確認してください。
+
+動作確認・不具合の記録は、リポジトリ直下の [COMPATIBILITY_AND_BUG_LOG.md](../../COMPATIBILITY_AND_BUG_LOG.md) を参照してください。

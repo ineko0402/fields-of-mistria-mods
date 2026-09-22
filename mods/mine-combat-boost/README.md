@@ -1,90 +1,59 @@
 # Mine Combat Boost
 
-Small combat assists for special mine-enemy mechanics. The MOD does not edit
-game assets or change ordinary monster health and damage.
+鉱山の一部の特殊な敵ギミックを、自動反射・回収・無効化する戦闘補助MODです。
 
-## 注意：ゲームプレイ難易度への影響 — 高
+## まずこれ
 
-一部の敵攻撃を自動で反射・回収・無効化し、特殊な敵への攻撃を通しやすくします。鉱山での危険と必要な操作を大きく減らす、戦闘補助／チート寄りのMODです。
+- **難易度への影響：高** — 特殊攻撃への操作と鉱山での危険を大きく減らします。
+- Rockclodの石と突進を反射し、爆弾を回収します。
+- Sonic Boomを自動発動し、Flame Spiritの火球を無効化します。
+- 必要：Fields of Mistria と MOMI 0.16.4以降。
 
-## 変更すること
+通常の敵の体力・攻撃力・出現率・ドロップ率・経験値や、ゲームアセットは変更しません。
 
-- Rockclodの石・突進、爆弾、Sonic Boom、Flame Spiritの火球など、特定の敵ギミックを自動処理します。
-- 殻状態のキノコへプレイヤー側の攻撃を通せるようにします。
+## 導入
 
-## 変更しないこと
+1. 配布ZIPをVortexなどで導入します。
+2. MOMIで **Install** を実行します。
+3. ゲームを起動します。
 
-- 通常の敵の体力、攻撃力、出現率、ドロップ率、経験値。
-- Rock Stack、Mimicなど、状態遷移を伴う無敵処理。
-- ゲーム本体の敵データやアセット。
+Steamの整合性チェック後は、MOMIで再度 **Install** を実行してください。
 
-動作確認・不具合の記録は、リポジトリ直下の [COMPATIBILITY_AND_BUG_LOG.md](../../COMPATIBILITY_AND_BUG_LOG.md) を参照してください。
+## できること
 
-## Features
+- **Rockclodの石を自動反射**：近づいた石を、本編の反射処理と本来のダメージ量で返します。
+- **Rockclodの突進を自動反射**：近くの突進を反射状態にし、その敵の突進ダメージと同じ量を与えます。
+- **Rockclodの爆弾を自動回収**：虫取り網で捕まえる時と同じく、Bombを1個入手します。インベントリが満杯なら何もしません。
+- **殻状態のキノコを攻撃可能に**：プレイヤー側の攻撃に本編の `Shield Break` を適用します。
+- **Sonic Boomを自動発動**：Sonic Boomパーク取得中、近くのEssence Batの超音波で本編のSonic Boomを発動します。
+- **Flame Spiritの火球を無効化**：近くのプレイヤー狙い火球を安全に消します。石と違い、敵へ反射はできません。
 
-- **Auto-reflect Rockclod stones:** A normal Rockclod stone that comes close
-  to Ari is reflected through the game's own return-projectile behavior, using
-  that stone's native damage value.
-- **Auto-reflect Rockclod charges:** A Rockclod that launches itself close to
-  Ari is turned around through the game's reflected-flight behavior. It also
-  receives damage equal to its own body-charge damage.
-- **Auto-catch Rockclod bombs:** A nearby bomb is converted into one Bomb item,
-  just as when catching it with the bug net. A full inventory leaves the bomb
-  untouched, so no item is lost.
-- **Mushroom shell break:** Attacks that target a shelled mushroom receive the
-  game's `Shield Break` flag. The enemy otherwise uses its normal damage,
-  defeat, drop, and experience handling.
-- **Auto Sonic Boom:** When the Sonic Boom perk is enabled, a nearby Essence
-  Bat sonic wave produces the perk's normal Sonic Boom automatically.
-- **Flame projectile neutralization:** Nearby player-targeted Flame Spirit
-  fireballs are safely removed. They cannot be naturally reflected back at an
-  enemy, unlike Rockclod stones.
+Rock Stack、Mimicなど、状態遷移を伴う無敵処理は対象外です。
 
-Rock Stacks, Mimics, and any other state-based invulnerability are intentionally
-outside version 0.1.0. Their state machines defer damage rather than simply
-blocking it, so forcing damage through them would be unsafe.
+## 設定
 
-## Requirements
-
-- Fields of Mistria
-- Mods of Mistria Installer (MOMI) 0.16.4 or newer
-
-## Installation
-
-1. Put the MOD ZIP in your mod manager, or extract its `mine-combat-boost`
-   folder under the game's `mods` folder.
-2. Run MOMI and install the MOD.
-3. Start the game.
-
-If Steam verifies the game files, run MOMI again before launching the game.
-
-## Settings
-
-The settings file is created on first launch:
+初回ロード後に、次のファイルが作成されます。編集する時はゲームを完全に終了し、保存後に再起動してください。
 
 `%LOCALAPPDATA%\FieldsOfMistria\mod_data\mine_combat_boost\mine_combat_boost.json`
 
-| Setting | Default | Description |
+| 設定 | 初期値 | 内容 |
 | --- | --- | --- |
-| `enabled` | `true` | Turns every Mine Combat Boost feature on or off. |
-| `auto_reflect_rocks` | `true` | Reflect nearby normal Rockclod stones. |
-| `auto_reflect_charges` | `true` | Reflect nearby Rockclod body charges. |
-| `auto_capture_bombs` | `true` | Capture nearby Rockclod bombs when an inventory slot is available. |
-| `mushroom_shell_break` | `true` | Let player-side attacks damage shelled mushrooms. |
-| `auto_sonic_boom` | `true` | Trigger Sonic Boom automatically for nearby bat sonic waves, only while the perk is enabled. |
-| `auto_neutralize_flame_projectiles` | `true` | Remove nearby player-targeted Flame Spirit fireballs. |
-| `assist_radius_tiles` | `1.5` | Proximity radius for automatic projectile and charge assists; valid range: 1–3. |
-| `debug_notifications` | `false` | Shows an English notification when the MOD first becomes active in a play session. |
+| `enabled` | `true` | 全機能を有効にします。 |
+| `auto_reflect_rocks` | `true` | Rockclodの石を反射します。 |
+| `auto_reflect_charges` | `true` | Rockclodの突進を反射します。 |
+| `auto_capture_bombs` | `true` | Rockclodの爆弾を回収します。 |
+| `mushroom_shell_break` | `true` | 殻状態のキノコへ攻撃を通します。 |
+| `auto_sonic_boom` | `true` | Sonic Boomを自動発動します。 |
+| `auto_neutralize_flame_projectiles` | `true` | Flame Spiritの火球を無効化します。 |
+| `assist_radius_tiles` | `1.5` | 自動処理の範囲。1〜3マス。 |
+| `debug_notifications` | `false` | 開発・確認用の英語通知を表示します。 |
 
-Invalid setting values are returned to their safe defaults when the game next
-loads the MOD.
+不正な設定値は、次回ロード時に安全な初期値へ戻ります。
 
-## Compatibility and limitations
+## 互換性と注意
 
-- This MOD only observes live combat objects and uses the game/MMAPI combat
-  paths. It does not overwrite game data files.
-- It may overlap with MODs that modify Rockclod projectiles or alter all combat
-  damage. Do not use more than one MOD that automatically changes the same
-  projectile at once.
-- Automatic bomb capture gives no bug-net animation and costs no stamina.
-- Test on a backed-up save when combining major combat MODs.
+- Rockclodの投射物や全体的な戦闘ダメージを変更するMODとは重複する可能性があります。
+- 爆弾回収には虫取り網のアニメーションとスタミナ消費がありません。
+- 大型の戦闘MODと併用する時は、セーブデータをバックアップして確認してください。
+
+動作確認・不具合の記録は、リポジトリ直下の [COMPATIBILITY_AND_BUG_LOG.md](../../COMPATIBILITY_AND_BUG_LOG.md) を参照してください。
