@@ -13,7 +13,6 @@
 | [Pocket Shipping](mods/pocket-shipping/README.md) | インベントリのゴミ箱から、アイテムを即時に出荷価格で売却します。 | 0.1.2 |
 | [Crafting Cost](mods/crafting-cost/README.md) | クラフト後の出荷額と素材の出荷額の差を表示します。 | 0.1.2 |
 | [Essence Infusion Choice](mods/essence-infusion-choice/README.md) | 魔素を使い、クラフトの追加効果を指定できます。 | 0.1.1 |
-| [Essence Infusion Choice](mods/essence-infusion-choice/README.md) | 魔素を使い、クラフトの追加効果を指定できます。 | 0.1.0 |
 
 ## 方針
 
